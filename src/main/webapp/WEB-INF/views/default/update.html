@@ -1,0 +1,32 @@
+<#include "/default/common/layout.html">
+<@layout>
+	<h2>update ${form.modelName}</h2>
+	<form method="post" action="/${form.modelName}/doUpdate">
+		
+		<#list form.formFields as field>
+			
+			<#if field.name=='id'>
+				<div class="form-group">
+					<input type="hidden" name="${field.name}" value="${t['${field.name}']}" />
+				</div>
+			<#elseif field.type=='textarea'>
+				<div class="form-group">
+					<label for="${field.id}">${field.label}：</label>
+					<textarea class="form-control"  rows="3" cols="">${t['${field.name}']}</textarea>
+				</div>
+			<#elseif field.type=='date' >
+				<div>
+					<label for="${field.id}">${field.label}：</label>
+					<input class="form-control"  id="${field.id}" type="text" name="${field.name}" value="${t['${field.name}']?string('yyyy-mm-dd')}"/>
+				</div>
+			<#else>
+				<div class="form-group">
+					<label for="${field.id}">${field.label}：</label>
+					<input class="form-control"  id="${field.id}" type="${field.type}" name="${field.name}" value="${t['${field.name}']}"/>
+				</div>
+			</#if>
+		</#list>
+		<button type="submit" class="btn btn-success">Submit</button>
+		<button type="reset" class="btn btn-default">Reset</button>
+	</form>
+</@layout>

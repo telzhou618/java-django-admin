@@ -1,0 +1,28 @@
+<#include "/default/common/layout.html">
+<@layout>
+	<h3>${form.modelLabel}-manager</h3>
+	<p><a href="/${form.modelName}/add">create</a></p>
+	<table class="table">
+		<tr>
+			<#list form.formFields as field>
+				<th width="20%">${field.label}</th>
+			</#list>
+			<th>操作</th>
+		</tr>
+		<#list list as m>
+			<tr>
+				<#list form.formFields as field>
+					<#if field.type=='date'>
+						<td>${m['${field.name}']?string('yyyy-mm-dd')}</td>
+					<#else>
+						<td>${m['${field.name}']}</td>
+					</#if>
+				</#list>
+				<td width="100">
+					<a href="/${form.modelName}/update/${m.id}">update</a>
+					<a href="/${form.modelName}/del/${m.id}">delete</a>
+				</td>
+			</tr>
+		</#list>
+	</table>
+</@layout>

@@ -1,0 +1,28 @@
+<#macro layout>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java-Jdjango-Admin</title>
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+	<h3>Java-Jdjango-Admin</h3>
+	<hr />
+	<div class="row">
+		<div class="col-md-2">
+			<div class="list-group">
+			  <a href="#" class="list-group-item"><b>menus</b></a>
+			  <#list forms as fm>
+			  	<a href="/${fm.modelName}/list?active=${fm.modelName}" class="list-group-item ${(fm.modelName == active)?string('active','')}">${fm.modelLabel} manager</a>
+			  </#list>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<#nested>
+		</div>
+	</div>
+</body>
+</html>
+</#macro>
