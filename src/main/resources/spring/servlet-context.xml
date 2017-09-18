@@ -55,7 +55,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean class=" com.github.foreyer.ModelParseInterceptor" />
+			<bean class=" com.github.foreyer.core.interceptor.ModelParseInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

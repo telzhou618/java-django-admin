@@ -1,4 +1,4 @@
-package com.github.foreyer;
+package com.github.foreyer.core.interceptor;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -35,7 +35,6 @@ public class ModelParseInterceptor extends HandlerInterceptorAdapter {
 			}
 			request.setAttribute("forms",FormMap.getForms());
 			request.setAttribute("active", request.getParameter("active"));
-			System.out.println("xxx");
 		}
 
 	}
