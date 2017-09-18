@@ -1,7 +1,7 @@
 <#include "/default/common/layout.html">
 <@layout>
 	<h3>${form.modelLabel}-manager</h3>
-	<p><a class="btn btn-primary"  href="/${form.modelName}/add">Create</a></p>
+	<p><a class="btn btn-primary"  href="/${form.modelName}/add"><span class="glyphicon glyphicon-plus"></span> Create</a></p>
 	<table class="table">
 		<tr>
 			<#list form.formFields as field>
@@ -19,8 +19,8 @@
 					</#if>
 				</#list>
 				<td width="300">
-					<a class="btn btn-sm btn-success" href="/${form.modelName}/update/${m.id}">Update</a>
-					<a class="btn btn-sm btn-danger" href="/${form.modelName}/del/${m.id}">Delete</a>
+					<a class="btn btn-sm btn-success" href="/${form.modelName}/update/${m.id}"><span class="glyphicon glyphicon-pencil"></span> Update</a>
+					<a class="btn btn-sm btn-danger" href="/${form.modelName}/del/${m.id}"><span class="glyphicon glyphicon-remove"></span> Delete</a>
 				</td>
 			</tr>
 		</#list>
