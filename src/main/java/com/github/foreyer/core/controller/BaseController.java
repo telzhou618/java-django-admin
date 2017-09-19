@@ -15,7 +15,7 @@ public abstract class BaseController {
 	 * @return
 	 */
 	public String getView(){
-		return "default";
+		return "bootstrap";
 	}
 	
 	/**

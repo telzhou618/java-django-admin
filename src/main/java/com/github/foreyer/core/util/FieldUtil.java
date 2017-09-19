@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.github.foreyer.core.anno.FAnno;
-import com.github.foreyer.core.view.FormField;
+import com.github.foreyer.core.view.form.FormField;
 
 public class FieldUtil {
 

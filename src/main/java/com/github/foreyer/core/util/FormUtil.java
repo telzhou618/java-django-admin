@@ -2,8 +2,8 @@ package com.github.foreyer.core.util;
 
 import java.util.List;
 
-import com.github.foreyer.core.view.Form;
-import com.github.foreyer.core.view.FormField;
+import com.github.foreyer.core.view.form.Form;
+import com.github.foreyer.core.view.form.FormField;
 
 public class FormUtil {
 

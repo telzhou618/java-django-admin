@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.github.foreyer.core.view.Form;
-import com.github.foreyer.core.view.FormMap;
+import com.github.foreyer.core.view.form.Form;
+import com.github.foreyer.core.view.form.FormMap;
 
 /**
  * Rest CRUD 超级控制器,目的在于所有继承该控制器的子控制器自带标准的5个Rest接口,包含CRUD
@@ -50,7 +50,6 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	
     @RequestMapping("/update/{id}")  
     public  String update(@PathVariable("id") Serializable id,Model model){
-		
     	if(id==null){
 			throw new RuntimeException("参数{id}不能为空");
 		}
@@ -66,7 +65,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
     
     @RequestMapping("/doUpdate")  
     public  String doUpdate(@Valid T t,BindingResult result){
-		if(result.hasErrors()){
+    	if(result.hasErrors()){
 			
 		}
 		s.updateById(t);
@@ -80,7 +79,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
      * @return
      */
     @RequestMapping("/add")
-	public String add(){
+	public String add(Model model){
     	return getView() + "/add";
 	}
     
@@ -134,6 +133,4 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 		Form form = FormMap.getForm(c.getSimpleName());
 		return form.getModelName();
 	}
-	
-
 }

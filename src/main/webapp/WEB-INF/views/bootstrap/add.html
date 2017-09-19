@@ -1,0 +1,44 @@
+<#include "/bootstrap/common/layout.html">
+<@head></@head>
+<@body>
+	<div class="container-fluid">
+	  <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">${form.modelLabel}-manager</li>
+      </ol>
+	   <div class="card mb-3 w-50">
+        <div class="card-header"><i class="fa fa-plus"></i> Create- ${form.modelLabel}</div>
+        <div class="card-body">
+           <form  method="post" action="/${form.modelName}/doAdd">
+			<#list form.formFields as field>
+				<#if field.name=='id'>
+				<#elseif field.type=='textarea'>
+					<div class="form-group">
+						<label for="${field.id}">${field.label}：</label>
+						<textarea class="form-control" rows="3" cols="" placeholder="please input ${field.name} ">${field.value}</textarea>
+					</div>
+				<#elseif field.type=='date' >
+					<div class="form-group">
+						<label for="${field.id}">${field.label}：</label>
+						<input class="form-control" id="${field.id}" type="text" name="${field.name}" value="" placeholder="please input ${field.name} " />
+					</div>
+				<#else>
+					<div class="form-group">
+						<label for="${field.id}">${field.label}：</label>
+						<input class="form-control" id="${field.id}" type="${field.type}" name="${field.name}" value="${field.value}" placeholder="please input ${field.name} " />
+					</div>
+				</#if>
+			</#list>
+			<button type="submit" class="btn btn-success">Submit</button>
+			<button type="reset" class="btn btn-default">Reset</button>
+		</form>
+        </div>
+      </div>
+    </div>
+	
+</@body>
+<@footer>
+</@footer>

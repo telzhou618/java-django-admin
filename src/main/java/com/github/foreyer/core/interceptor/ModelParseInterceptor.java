@@ -6,16 +6,20 @@ import java.lang.reflect.Type;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.github.foreyer.core.controller.CrudController;
-import com.github.foreyer.core.view.Form;
-import com.github.foreyer.core.view.FormMap;
+import com.github.foreyer.core.view.form.Form;
+import com.github.foreyer.core.view.form.FormMap;
+import com.github.foreyer.core.view.menu.MenuData;
 
 public class ModelParseInterceptor extends HandlerInterceptorAdapter {
-
+	
+	@Autowired private  MenuData menuData;
+	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -35,6 +39,7 @@ public class ModelParseInterceptor extends HandlerInterceptorAdapter {
 			}
 			request.setAttribute("forms",FormMap.getForms());
 			request.setAttribute("active", request.getParameter("active"));
+			request.setAttribute("menuData", menuData);
 		}
 
 	}

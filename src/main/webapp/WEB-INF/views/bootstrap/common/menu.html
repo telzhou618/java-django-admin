@@ -1,0 +1,23 @@
+<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="控制台">
+    <a class="nav-link" href="/index.html">
+      <i class="fa fa-fw fa-dashboard"></i>
+      <span class="nav-link-text">控制台</span>
+    </a>
+  </li>
+  <#list menuData.getMenus() as m>
+   <li class="nav-item" data-toggle="tooltip" data-placement="right" title="${m.text}">
+    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#${m.id}" data-parent="#exampleAccordion">
+      <i class="fa fa-fw ${m.icon}"></i>
+      <span class="nav-link-text">${m.text}</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="${m.id}">
+      <#list m.items as it>
+      <li>
+        <a href="${it.url}">${it.text}</a>
+      </li>
+      </#list>
+    </ul>
+  </li>
+  </#list>
+</ul>

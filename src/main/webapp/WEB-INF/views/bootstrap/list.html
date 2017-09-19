@@ -1,0 +1,64 @@
+<#include "/bootstrap/common/layout.html">
+<@head></@head>
+<@body>
+	<div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">${form.modelLabel}-manager</li>
+      </ol>
+      <p><p><a class="btn btn-primary"  href="/${form.modelName}/add" data-toggle="tooltip" data-placement="right" title="Create"><i class="fa fa-plus"></i> Create</a></p></p>
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> ${form.modelLabel}-list</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <#list form.formFields as field>
+					<th>${field.label}</th>
+				  </#list>
+				   <th>操作</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <#list form.formFields as field>
+					<th>${field.label}</th>
+				  </#list>
+				   <th>操作</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <#list list as m>
+					<tr>
+						<#list form.formFields as field>
+							<#if field.type=='date'>
+								<td>${m['${field.name}']?string('yyyy-mm-dd')}</td>
+							<#else>
+								<td>${m['${field.name}']}</td>
+							</#if>
+						</#list>
+						<td>
+							<a class="btn btn-sm btn-success" href="/${form.modelName}/update/${m.id}" data-toggle="tooltip" data-placement="top" title="Update"><i class="fa fa-edit"></i> Update</a>
+							<a class="btn btn-sm btn-danger" href="/${form.modelName}/del/${m.id}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i> Delete</a>
+						</td>
+					</tr>
+				</#list>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    </div>
+</@body>
+<@footer>
+<script src="/static/vendor/datatables/jquery.dataTables.js"></script>
+<script src="/static/vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="/static/js/sb-admin-datatables.js"></script>
+</@footer>
