@@ -5,12 +5,15 @@
 	  <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="/index.html">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">${form.modelLabel}-manager</li>
+        <li class="breadcrumb-item active">
+        	 <a href="/${form.modelName}/list">${form.modelLabel} Manager</a>
+        </li>
+        <li class="breadcrumb-item active">Create ${form.modelLabel}</li>
       </ol>
 	   <div class="card mb-3">
-        <div class="card-header"><i class="fa fa-plus"></i> Create- ${form.modelLabel}</div>
+	    <div class="card-header"><i class="fa fa-plus"></i> Create ${form.modelLabel}</div>
         <div class="card-body">
            <form  method="post" action="/${form.modelName}/doAdd">
 			<#list form.formFields as field>

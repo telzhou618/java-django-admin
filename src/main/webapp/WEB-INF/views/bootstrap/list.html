@@ -5,15 +5,15 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="/index.html">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">${form.modelLabel}-manager</li>
+        <li class="breadcrumb-item active">${form.modelLabel} Manager</li>
       </ol>
       <p><p><a class="btn btn-primary"  href="/${form.modelName}/add" data-toggle="tooltip" data-placement="right" title="Create"><i class="fa fa-plus"></i> Create</a></p></p>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> ${form.modelLabel}-list</div>
+          <i class="fa fa-table"></i> ${form.modelLabel} List</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -37,7 +37,9 @@
                 <#list list as m>
 					<tr>
 						<#list form.formFields as field>
-							<#if field.type=='date'>
+						    <#if field.type=='password'>
+						    	<td>********</td>
+							<#elseif field.type=='date'>
 								<td>${m['${field.name}']?string('yyyy-mm-dd')}</td>
 							<#else>
 								<td>${m['${field.name}']}</td>

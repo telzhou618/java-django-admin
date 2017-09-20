@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,9 +17,20 @@ import com.github.foreyer.core.view.form.Form;
 import com.github.foreyer.core.view.form.FormMap;
 import com.github.foreyer.core.view.menu.MenuData;
 
+/**
+ * 全局拦截器
+ * @author jameszhou
+ *
+ */
 public class ModelParseInterceptor extends HandlerInterceptorAdapter {
 	
+	/**
+	 * 菜单数据
+	 */
 	@Autowired private  MenuData menuData;
+	/**
+	 * 表单数据
+	 */
 	@Autowired private  FormMap formMap;
 	
 	@Override
@@ -38,6 +50,18 @@ public class ModelParseInterceptor extends HandlerInterceptorAdapter {
 				Form form = formMap.getForm(c.getSimpleName());
 				request.setAttribute("form", form);
 			}
+			
+			/**
+			 * Active Menu
+			 */
+			String t = request.getParameter("_t");
+			if (StringUtils.isNotBlank(t)) {
+				request.getSession().setAttribute("_t", t);
+			}
+			
+			/**
+			 * 保存数据
+			 */
 			request.setAttribute("forms",formMap.getForms());
 			request.setAttribute("active", request.getParameter("active"));
 			request.setAttribute("menuData", menuData);

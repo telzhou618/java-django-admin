@@ -11,10 +11,10 @@
       <i class="fa fa-fw ${m.icon}"></i>
       <span class="nav-link-text">${m.text}</span>
     </a>
-    <ul class="sidenav-second-level collapse" id="${m.id}">
+    <ul class="sidenav-second-level ${(_t!=m.id)?string('collapse','')}" id="${m.id}">
       <#list m.items as it>
       <li>
-        <a href="${it.url}">${it.text}</a>
+        <a href="${it.url}?_t=${m.id}">${it.text}</a>
       </li>
       </#list>
     </ul>

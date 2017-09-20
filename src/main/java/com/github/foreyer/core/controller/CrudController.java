@@ -59,6 +59,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
     public  String doUpdate(@Valid T t,BindingResult result,Model model){
     	if(result.hasErrors()){
 			model.addAttribute("errors",result.getFieldErrors());
+			model.addAttribute("t", t);
 			return getView() + "/update";
 		}
 		s.updateById(t);

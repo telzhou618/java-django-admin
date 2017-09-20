@@ -5,12 +5,15 @@
 	  <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="/index.html">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">${form.modelLabel}-manager</li>
+        <li class="breadcrumb-item active">
+        	 <a href="/${form.modelName}/list">${form.modelLabel} Manager</a>
+        </li>
+        <li class="breadcrumb-item active">Update ${form.modelLabel}</li>
       </ol>
-	   <div class="card mb-3 w-50">
-        <div class="card-header"><i class="fa fa-edit"></i> Update- ${form.modelLabel}</div>
+	   <div class="card mb-3">
+        <div class="card-header"><i class="fa fa-edit"></i> Update ${form.modelLabel}</div>
         <div class="card-body">
            <form method="post" action="/${form.modelName}/doUpdate">
 				<#list form.formFields as field>
@@ -39,6 +42,14 @@
 				<button type="submit" class="btn btn-success">Submit</button>
 				<button type="reset" class="btn btn-default">Reset</button>
 			</form>
+			<#if errors??>
+			<div class="alert alert-danger" role="alert" style="margin-top: 10px;">
+				<#list errors as er>
+					<p> ${er.field}：${er.defaultMessage}！
+				</#list>
+			</div>
+			</#if>
+	       </div>
         </div>
       </div>
     </div>
