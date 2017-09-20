@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
   $('#dataTable').DataTable({
-	  language: {
+	 /* language: {
 	        "sProcessing": "处理中...",
 	        "sLengthMenu": "显示 _MENU_ 项结果",
 	        "sZeroRecords": "没有匹配结果",
@@ -24,6 +24,6 @@ $(document).ready(function() {
 	            "sSortAscending": ": 以升序排列此列",
 	            "sSortDescending": ": 以降序排列此列"
 	        }
-	    }
+	    }*/
   });
 });

@@ -19,6 +19,7 @@ import com.github.foreyer.core.view.menu.MenuData;
 public class ModelParseInterceptor extends HandlerInterceptorAdapter {
 	
 	@Autowired private  MenuData menuData;
+	@Autowired private  FormMap formMap;
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -34,10 +35,10 @@ public class ModelParseInterceptor extends HandlerInterceptorAdapter {
 				ParameterizedType pt = (ParameterizedType) type;
 				Type[] ts = pt.getActualTypeArguments(); //泛型中的参数
 				Class<?> c = (Class<?>) ts[0]; //第一个参数
-				Form form = FormMap.getForm(c.getSimpleName());
+				Form form = formMap.getForm(c.getSimpleName());
 				request.setAttribute("form", form);
 			}
-			request.setAttribute("forms",FormMap.getForms());
+			request.setAttribute("forms",formMap.getForms());
 			request.setAttribute("active", request.getParameter("active"));
 			request.setAttribute("menuData", menuData);
 		}

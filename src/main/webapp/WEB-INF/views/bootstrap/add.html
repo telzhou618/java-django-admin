@@ -9,7 +9,7 @@
         </li>
         <li class="breadcrumb-item active">${form.modelLabel}-manager</li>
       </ol>
-	   <div class="card mb-3 w-50">
+	   <div class="card mb-3">
         <div class="card-header"><i class="fa fa-plus"></i> Create- ${form.modelLabel}</div>
         <div class="card-body">
            <form  method="post" action="/${form.modelName}/doAdd">
@@ -18,7 +18,7 @@
 				<#elseif field.type=='textarea'>
 					<div class="form-group">
 						<label for="${field.id}">${field.label}：</label>
-						<textarea class="form-control" rows="3" cols="" placeholder="please input ${field.name} ">${field.value}</textarea>
+						<textarea name="${field.name}" id="${field.id}" class="form-control" rows="3" cols="" placeholder="please input ${field.name} ">${field.value}</textarea>
 					</div>
 				<#elseif field.type=='date' >
 					<div class="form-group">
@@ -35,6 +35,13 @@
 			<button type="submit" class="btn btn-success">Submit</button>
 			<button type="reset" class="btn btn-default">Reset</button>
 		</form>
+		<#if errors??>
+		<div class="alert alert-danger" role="alert" style="margin-top: 10px;">
+			<#list errors as er>
+				<p> ${er.field}：${er.defaultMessage}！
+			</#list>
+		</div>
+		</#if>
         </div>
       </div>
     </div>

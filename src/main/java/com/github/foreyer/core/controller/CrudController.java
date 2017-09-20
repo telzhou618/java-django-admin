@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +31,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	 * 注入服务层
 	 */
 	@Autowired(required = false) private S s;
+	@Autowired private FormMap formMap;
 	
 	public S getS() {
 		return s;
@@ -50,23 +50,16 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	
     @RequestMapping("/update/{id}")  
     public  String update(@PathVariable("id") Serializable id,Model model){
-    	if(id==null){
-			throw new RuntimeException("参数{id}不能为空");
-		}
-    	if(id instanceof String){
-    		if(StringUtils.isBlank((String)id)){
-    			throw new RuntimeException("参数{id}不能为空");
-    		}
-    	}
 		T t = s.selectById(id);
 		model.addAttribute("t", t);
 		return this.getView()+"/update";
     }
     
     @RequestMapping("/doUpdate")  
-    public  String doUpdate(@Valid T t,BindingResult result){
+    public  String doUpdate(@Valid T t,BindingResult result,Model model){
     	if(result.hasErrors()){
-			
+			model.addAttribute("errors",result.getFieldErrors());
+			return getView() + "/update";
 		}
 		s.updateById(t);
 		return this.redirectUrl("/"+getModelName()+"/list");
@@ -90,10 +83,11 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	 * @return
 	 */
 	@RequestMapping("/doAdd")
-	public String doAdd(@Valid T t,BindingResult result){
+	public String doAdd(@Valid T t,BindingResult result,Model model){
 		
 		if(result.hasErrors()){
-			
+			model.addAttribute("errors",result.getFieldErrors());
+			return getView() + "/add";
 		}
 		s.insert(t);
 		return this.redirectUrl("/"+getModelName()+"/list");
@@ -107,15 +101,6 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 	 */
 	@RequestMapping("/del/{id}")
 	public String delete(@PathVariable("id") Serializable id){
-		
-		if(id==null){
-			throw new RuntimeException("参数{id}不能为空");
-		}
-    	if(id instanceof String){
-    		if(StringUtils.isBlank((String)id)){
-    			throw new RuntimeException("参数{id}不能为空");
-    		}
-    	}
     	s.deleteById(id);
     	return this.redirectUrl("/"+getModelName()+"/list");
 	}
@@ -130,7 +115,7 @@ public abstract class CrudController<T extends Serializable,S extends IService<T
 		ParameterizedType pt = (ParameterizedType) type;
 		Type[] ts = pt.getActualTypeArguments(); //泛型中的参数
 		Class<?> c = (Class<?>) ts[0]; //第一个参数
-		Form form = FormMap.getForm(c.getSimpleName());
+		Form form = formMap.getForm(c.getSimpleName());
 		return form.getModelName();
 	}
 }

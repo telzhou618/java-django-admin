@@ -17,12 +17,12 @@
 					
 					<#if field.name=='id'>
 						<div class="form-group">
-							<input type="hidden" name="${field.name}" value="${t['${field.name}']}" />
+							<input type="text" class="form-control" name="${field.name}" readonly="readonly" value="${t['${field.name}']}" />
 						</div>
 					<#elseif field.type=='textarea'>
 						<div class="form-group">
 							<label for="${field.id}">${field.label}：</label>
-							<textarea class="form-control"  rows="3" cols="">${t['${field.name}']}</textarea>
+							<textarea name="${field.name}" id="${field.id}" class="form-control"  rows="3" cols="">${t['${field.name}']}</textarea>
 						</div>
 					<#elseif field.type=='date' >
 						<div>

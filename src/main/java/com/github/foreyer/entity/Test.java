@@ -2,6 +2,8 @@ package com.github.foreyer.entity;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.github.foreyer.core.anno.FAnno;
 import com.github.foreyer.core.model.Model;
@@ -14,6 +16,7 @@ public class Test extends Model{
 	private static final long serialVersionUID = 1L;
 
 	@FAnno(type="text")
+	@NotBlank
 	private String name;
 	
 	@FAnno("0")
@@ -25,7 +28,7 @@ public class Test extends Model{
 	@FAnno(type="number")
 	private int state;
 	
-	@FAnno(type="file")
+	@FAnno(type="text")
 	private String file;
 	
 	private Float price;

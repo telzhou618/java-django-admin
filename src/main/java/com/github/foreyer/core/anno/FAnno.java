@@ -16,11 +16,30 @@ import java.lang.annotation.Target;
 @Documented
 public @interface FAnno {
 	
+	/**
+	 * 字段Name
+	 * @return
+	 */
 	String name() default "";
-	
+	/**
+	 * type
+	 * @return
+	 */
 	String type() default "text";
-	
+	/**
+	 * 默认值
+	 * @return
+	 */
 	String value() default "";
-	
+	/**
+	 * 字段显示名称
+	 * @return
+	 */
 	String label() default "";
+	
+	/**
+	 * 初级验证 url,number,email,date 
+	 * @return
+	 */
+	String vtype() default "";
 }

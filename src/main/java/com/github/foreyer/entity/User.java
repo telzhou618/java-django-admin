@@ -1,5 +1,7 @@
 package com.github.foreyer.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.github.foreyer.core.anno.FAnno;
 import com.github.foreyer.core.model.Model;
@@ -20,10 +22,12 @@ public class User extends Model {
     /**
      * 用户名
      */
+    @NotBlank
 	private String userName;
     /**
      * 密码
      */
+    @NotBlank
 	@FAnno(type="password")
 	private String password;
     /**
