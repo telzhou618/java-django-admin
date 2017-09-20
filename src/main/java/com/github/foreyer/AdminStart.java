@@ -7,6 +7,7 @@ import com.github.foreyer.core.util.ModelUtil;
 import com.github.foreyer.core.view.form.FormMap;
 import com.github.foreyer.core.view.menu.Menu;
 import com.github.foreyer.core.view.menu.MenuData;
+import com.github.foreyer.entity.Goods;
 import com.github.foreyer.entity.Test;
 import com.github.foreyer.entity.User;
 
@@ -16,7 +17,7 @@ import com.github.foreyer.entity.User;
  *
  */
 @Configuration
-public class AdminBean {
+public class AdminStart {
 	/**
 	 * 注入form组件
 	 * @return
@@ -26,6 +27,7 @@ public class AdminBean {
 		FormMap fm = new FormMap();
 		fm.bindModel(Test.class);
 		fm.bindModel(User.class);
+		fm.bindModel(Goods.class);
 		return fm;
 	}
 	
@@ -38,7 +40,7 @@ public class AdminBean {
 	public MenuData initMenuMap(){
 		MenuData md = new MenuData();
 		md.put(new Menu("fa-cogs","System",ModelUtil.toMenus(User.class,Test.class)));
-		md.put(new Menu("fa-cart-plus","Goods",ModelUtil.toMenus(User.class,Test.class)));
+		md.put(new Menu("fa-cart-plus","Goods",ModelUtil.toMenus(Goods.class)));
 		return md;
 	}
 }
